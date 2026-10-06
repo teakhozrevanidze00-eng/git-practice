@@ -16,4 +16,4 @@ jobs:
         run: ls
 
       - name: Check README exists
-        run: test -f README.txt
+        run: test -f DOES_NOT_EXIST.txt
