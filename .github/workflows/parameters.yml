@@ -1,0 +1,31 @@
+name: Parameterized QA Job
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Choose environment"
+        required: true
+        default: "test"
+        type: choice
+        options:
+          - test
+          - staging
+
+      run_tests:
+        description: "Run automated tests?"
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  qa-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show selected environment
+        run: echo "Environment is ${{ inputs.environment }}"
+
+      - name: Run automated tests
+        if: ${{ inputs.run_tests }}
+        run: echo "Automated tests are running"
